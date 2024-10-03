@@ -1,0 +1,26 @@
+{
+  "name": "gigmapro",
+  "version": "1.0.0",
+  "description": "A freelancing platform",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "gigmapro",
+    "freelancing",
+    "gig",
+    "project",
+    "bidding"
+  ],
+  "author": "Hritesh Saha",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "mysql2": "^3.11.3",
+    "sequelize": "^6.37.3"
+  }
+}
