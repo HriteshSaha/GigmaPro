@@ -3,79 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GigmaPro - Home</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .hero {
-            background-image: url('/images/bgImg.wbep'); 
-            background-size: cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 4rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        .hero p {
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-        }
-        footer {
-            background-color: #343a40;
-            color: white;
-            padding: 20px 0;
-        }
-    </style>
+    <title>GigmaPro - Freelancing Platform</title>
+    <link rel="stylesheet" href="Homecss/homeCSS.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">GigmaPro</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><img src="profile-icon-url.png" alt="Profile" style="width: 30px; height: 30px;"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-primary" href="#">Log In</a>
-                    </li>
-                </ul>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop>
+        <source src="/videos/gigmaPro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">GigmaPro</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">What's New</a></li>
+                <li><a href="#">Why Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" placeholder="Search...">
+                <button class="search-btn">Search</button>
             </div>
+            <a href="/login" class="login-btn">Login</a> <!-- Replace 'your-login-url' with your actual login page URL -->
         </div>
     </nav>
+    
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <div>
+    <!-- Content Overlay -->
+    <div class="content">
+        <div class="welcome-container">
             <h1>Welcome to GigmaPro</h1>
-            <p>Your platform for freelancers and clients</p>
-            <a class="btn btn-secondary btn-lg" href="#">Get Started</a>
+            <p>Connect. Collaborate. Succeed.</p>
+            <p>Hire the best freelancers for any job, online.</p>
         </div>
+        <form action="/signup-client" method="get">
+            <button id="client-btn">Hire a Freelancer</button>
+        </form>
+        <form action="/signup-freelancer" method="get">
+            <button id="freelancer-btn">Earn Money Freelancing</button>
+        </form>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2024 GigmaPro. All rights reserved.</p>
-            <a href="#" class="text-white">Privacy Policy</a> | 
-            <a href="#" class="text-white">Terms of Service</a>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- You can reuse existing CSS -->
+
+    <title>User Dashboard</title>
+
+    <style>
+        /* Profile Sidebar Styles */
+        .profile-sidebar {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-right: 2px solid #dee2e6;
+            min-height: 100vh;
+        }
+
+        .profile-sidebar .profile-img {
+            text-align: center;
+        }
+
+        .profile-sidebar .profile-img img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .profile-sidebar h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-sidebar .list-group {
+            margin-top: 20px;
+        }
+
+        /* Dashboard Section Styles */
+        .dashboard-content {
+            padding: 30px;
+        }
+
+        .dashboard-header {
+            margin-bottom: 20px;
+        }
+
+        .dashboard-cards .card {
+            margin-bottom: 20px;
+        }
+
+        /* Style for a vertical separator between profile and dashboard */
+        .separator {
+            border-left: 1px solid #dee2e6;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Profile Sidebar -->
+        <div class="col-md-3 profile-sidebar">
+            <div class="profile-img">
+                <img src="images/profile-placeholder.png" alt="Profile Image">
+            </div>
+            <h3>John Doe</h3>
+            <p>Email: johndoe@example.com</p>
+            <p>Account Type: Freelancer</p>
+            
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">My Projects</a>
+                <a href="#" class="list-group-item list-group-item-action">My Bids</a>
+                <a href="#" class="list-group-item list-group-item-action">Messages</a>
+                <a href="#" class="list-group-item list-group-item-action">Settings</a>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="col-md-9 dashboard-content">
+            <div class="dashboard-header">
+                <h2>Dashboard Overview</h2>
+                <p>Welcome back, John! Here's a quick overview of your activities.</p>
+            </div>
+
+            <div class="row dashboard-cards">
+                <!-- Example Dashboard Cards -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Active Projects</h5>
+                            <p class="card-text">You are currently working on <strong>3</strong> projects.</p>
+                            <a href="#" class="btn btn-primary">View Projects</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Open Bids</h5>
+                            <p class="card-text">You have placed <strong>5</strong> open bids.</p>
+                            <a href="#" class="btn btn-primary">View Bids</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Messages</h5>
+                            <p class="card-text">You have <strong>2</strong> new messages.</p>
+                            <a href="#" class="btn btn-primary">View Messages</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row dashboard-cards">
+                <!-- Additional Dashboard Content (e.g., recent activities, notifications) -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Activity</h5>
+                            <ul>
+                                <li>Bid placed on "Website Redesign Project" - 1 hour ago</li>
+                                <li>Message received from client Jane Doe - 2 hours ago</li>
+                                <li>Completed "Landing Page Design" project - Yesterday</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
