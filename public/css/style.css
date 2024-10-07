@@ -199,3 +199,10 @@ h2 {
 .control--checkbox input:disabled:checked ~ .control__indicator {
   background-color: #7e0cf5;
   opacity: .2; }
+
+
+.img-fluid{
+  position: fixed;
+  max-width: 40%;
+  height: auto;
+}
