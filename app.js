@@ -8,6 +8,10 @@ const freelancerSignupRoute = require("./routes/freelancerRegistrationRoute.js")
 const loginRoute = require("./routes/loginRoute.js");
 const freelancerDashboardRoute = require("./routes/freelancerdashboardRoute.js");
 const clientDashboardRoute = require('./routes/clientDashboardRoute.js')
+const createProject = require('./routes/projectCreationRoute.js')
+const bidSubmission = require('./routes/bidSubmissionRoute.js')
+const projects = require('./routes/projectCardRoute.js')
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,6 +26,10 @@ app.use("/", freelancerSignupRoute);
 app.use("/", loginRoute);
 app.use("/", freelancerDashboardRoute);
 app.use("/", clientDashboardRoute);
+app.use("/", createProject);
+app.use("/", bidSubmission);
+app.use('/', projects)
+
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
