@@ -1,6 +1,6 @@
 const clientDashboard = require('../controllers/clientDashboardController.js')
 const router = require('express').Router()
 
-router.get('/dashboard-user-client', clientDashboard)
+router.get('/dashboard', clientDashboard)
 
 module.exports = router

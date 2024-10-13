@@ -33,44 +33,45 @@
                             <h3>Create Account</h3>
                             <p class="mb-4">Please fill in the details to create an account.</p>
                         </div>
-                        <form action="/signup-client" method="post"> <!-- Replace with your registration endpoint -->
+                        <form action="/signup-client" method="post">
                             <div class="form-group first mb-3">
-                                <label for="first-name">First Name</label>
-                                <input type="text" class="form-control" id="first-name" name="firstName" required>
-                            </div>
-                            <div class="form-group last mb-3"> <!-- Added bottom margin here -->
-                                <label for="last-name">Last Name</label>
-                                <input type="text" class="form-control" id="last-name" name="lastName" required>
+                              <input type="text" class="form-control" id="first-name" name="firstName" required placeholder=" ">
+                              <label for="first-name">First Name</label>
                             </div>
                             <div class="form-group last mb-3">
-                                <label for="organization">Organization</label>
-                                <input type="text" class="form-control" id="organization" name="organization" required>
+                              <input type="text" class="form-control" id="last-name" name="lastName" required placeholder=" ">
+                              <label for="last-name">Last Name</label>
                             </div>
                             <div class="form-group last mb-3">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                              <input type="text" class="form-control" id="organization" name="organization" required placeholder=" ">
+                              <label for="organization">Organization</label>
                             </div>
                             <div class="form-group last mb-3">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                              <input type="email" class="form-control" id="email" name="email" required placeholder=" ">
+                              <label for="email">Email</label>
                             </div>
-                            
+                            <div class="form-group last mb-3">
+                              <input type="password" class="form-control" id="password" name="password" required placeholder=" ">
+                              <label for="password">Password</label>
+                            </div>
+                          
                             <input type="submit" value="Register" class="btn btn-block btn-primary">
-
+                          
                             <span class="d-block text-left my-4 text-muted">&mdash; or register with &mdash;</span>
-                            
+                          
                             <div class="social-login">
-                                <a href="#" class="facebook">
-                                    <span class="icon-facebook mr-3"></span> 
-                                </a>
-                                <a href="#" class="twitter">
-                                    <span class="icon-twitter mr-3"></span> 
-                                </a>
-                                <a href="#" class="google">
-                                    <span class="icon-google mr-3"></span> 
-                                </a>
+                              <a href="#" class="facebook">
+                                <span class="icon-facebook mr-3"></span>
+                              </a>
+                              <a href="#" class="twitter">
+                                <span class="icon-twitter mr-3"></span>
+                              </a>
+                              <a href="#" class="google">
+                                <span class="icon-google mr-3"></span>
+                              </a>
                             </div>
-                        </form>
+                          </form>
+                          
                     </div>
                 </div>
                 

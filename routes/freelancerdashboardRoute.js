@@ -1,6 +1,6 @@
 const freelancerDashboard = require('../controllers/freelancerDashboardController.js')
 const router = require('express').Router()
 
-router.get('/dashboard-user-freelancer', freelancerDashboard)
+router.get('/dashboard', freelancerDashboard)
 
 module.exports = router

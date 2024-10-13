@@ -1,7 +1,9 @@
 const router = require('express').Router()
-const {loginForm} = require('../controllers/loginController')
+const {loginForm, handleLogin} = require('../controllers/loginController')
 
 router.get('/login', loginForm)
+
+router.post('/login', handleLogin)
 
 
 
