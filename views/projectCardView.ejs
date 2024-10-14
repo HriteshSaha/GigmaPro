@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>GigmaPro - Add Project</title>
+  <title>GigmaPro - All Project</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -25,15 +25,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/addProject.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Arsha
-  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <link href="css/addProject.css" rel="stylesheet">
   <style>
     .container {
         width: 100%;
@@ -129,18 +121,19 @@
 
       <div class="container">
         <!-- Example Project Card -->
-        <div class="card">
-            <h3>Project Name: Build a Freelancing Platform</h3>
-            <p class="budget">Budget: $5000</p>
-            <p class="category">Category: Web Development</p>
+        <% allProject.forEach((project) => {%>
+          <div class="card">
+            <h3>Project Name: <%= project.title %></h3>
+            <p class="budget">Budget: <%= project.budget %></p>
+            <p class="category">Category: <%= project.category %></p>
             <p class="skills">Skills Required: JavaScript, Node.js, MySQL, HTML, CSS</p>
-            <p class="description">
-                Description: Looking for a developer to build a freelancing platform with multiple features including login, project posting, bidding, and more.
-            </p>
+            <p class="description">Description: <%= project.description %></p>
             <div class="card-footer">
                 <button>Place a Bid</button>
             </div>
         </div>
+        <%})%>
+        
 
         <!-- Add more cards here if needed -->
     </div>
