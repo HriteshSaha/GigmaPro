@@ -15,7 +15,7 @@ const bidSubmission = require('./routes/bidSubmissionRoute.js')
 const projects = require('./routes/projectCardRoute.js')
 const registrationDiversion = require('./routes/registrationDiversionRoute.js')
 const isAuthenticated = require('./middlewares/authenticationMiddleware.js')
-const { isClient, isFreelancer } = require('./middlewares/authorizationMiddleware.js')
+const isAuthorized = require('./middlewares/authorizationMiddleware.js')
 
 
 const app = express();
@@ -38,10 +38,10 @@ app.use('/', clientSignupRoute);
 app.use('/', freelancerSignupRoute);
 app.use('/', loginRoute);
 app.use('/', handleLogout)
-app.use('/freelancer', isAuthenticated, isFreelancer, freelancerDashboardRoute);
-app.use('/freelancer', isAuthenticated, isFreelancer, bidSubmission);
-app.use('/client', isAuthenticated, isClient, clientDashboardRoute);
-app.use('/client', isAuthenticated, isClient, createProject);
+app.use('/freelancer', isAuthenticated, isAuthorized(['Freelancer']), freelancerDashboardRoute);
+app.use('/freelancer', isAuthenticated, isAuthorized(['Freelancer']), bidSubmission);
+app.use('/client', isAuthenticated, isAuthorized(['Client']), clientDashboardRoute);
+app.use('/client', isAuthenticated, isAuthorized(['Client']), createProject);
 app.use('/', isAuthenticated, projects)
 app.use('/', registrationDiversion)
 
