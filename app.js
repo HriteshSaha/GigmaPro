@@ -38,12 +38,14 @@ app.use('/', clientSignupRoute);
 app.use('/', freelancerSignupRoute);
 app.use('/', loginRoute);
 app.use('/', handleLogout)
+app.use('/', registrationDiversion)
+app.use('/', isAuthenticated, projects)
 app.use('/freelancer', isAuthenticated, isAuthorized(['Freelancer']), freelancerDashboardRoute);
 app.use('/freelancer', isAuthenticated, isAuthorized(['Freelancer']), bidSubmission);
 app.use('/client', isAuthenticated, isAuthorized(['Client']), clientDashboardRoute);
 app.use('/client', isAuthenticated, isAuthorized(['Client']), createProject);
 app.use('/', isAuthenticated, projects)
-app.use('/', registrationDiversion)
+
 
 
 app.listen(port, () => {

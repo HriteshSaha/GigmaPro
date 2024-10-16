@@ -1231,3 +1231,112 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+/* _____________________ Assign project btn ____________________ */
+.assign-btn{
+  background-color: #717ff5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-weight: bolder;
+}
+
+.assign-btn:hover {
+  background-color: #3546e2; /* Slightly darker shade on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1); /* Adds a soft shadow on hover */
+}
+.assign-btn:active {
+  background-color: #bec2e9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ________________________Add project card_______________________________ */
+.card-body {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #37517f; 
+  text-align: center; 
+}
+
+ul.project-list {
+  list-style: none; 
+  padding-left: 0;
+  margin: 0;
+}
+
+.project-header {
+  font-weight: bold;
+  font-size: 18px;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #ddd;
+  padding: 10px 0;
+}
+
+.project-item {
+  display: flex;
+  justify-content: space-between; 
+  padding: 10px 0;
+  background-color: #fff; 
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.project-title {
+  font-weight: bold;
+  color: #37517f; 
+  flex: 1;
+}
+
+.project-budget {
+  color: #4caf50; 
+  flex: 1;
+  text-align: right; 
+}
+
+ul.project-list li:not(:last-child) {
+  border-bottom: 1px solid #ddd; 
+}
+
+
+/* ______________________ Add project btn ________________________ */
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.add-project-btn {
+  background-color: green; 
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-project-btn:hover {
+  background-color: rgb(128, 201, 18);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  color: white;
+}
+
+.add-project-btn:active {
+  background-color: #66ff00;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
