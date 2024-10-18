@@ -25,6 +25,7 @@ const handleLogin = async (req, res)=>{
     req.session.user = {
       id: isUser.id,
       firstName: isUser.firstName,
+      lastName: isUser.lastName,
       email: isUser.email,
       role: isUser.role
     }

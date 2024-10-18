@@ -129,8 +129,8 @@
             <p class="skills">Skills Required: JavaScript, Node.js, MySQL, HTML, CSS</p>
             <p class="description">Description: <%= project.description %></p>
             <div class="card-footer">
-              <form action="/freelancer/bid-submission" method="get">
-                <button>Place a Bid</button>
+              <form action="/freelancer/bid-submission/<%= project.id %>" method="get">
+                <button type="submit">Place a Bid</button>
               </form>  
             </div>
         </div>

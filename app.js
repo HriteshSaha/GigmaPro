@@ -44,7 +44,6 @@ app.use('/freelancer', isAuthenticated, isAuthorized(['Freelancer']), freelancer
 app.use('/freelancer', isAuthenticated, isAuthorized(['Freelancer']), bidSubmission);
 app.use('/client', isAuthenticated, isAuthorized(['Client']), clientDashboardRoute);
 app.use('/client', isAuthenticated, isAuthorized(['Client']), createProject);
-app.use('/', isAuthenticated, projects)
 
 
 

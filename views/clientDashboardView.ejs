@@ -203,7 +203,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="/assets-dashboard/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><%=firstName%></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><%=firstName+ ' '+ lastName %></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -320,6 +320,7 @@
           <div class="row">
 
             <!-- Top Selling -->
+             <% projects.forEach((project)=>{%>
             <div class="col-12">
               <div class="card top-selling overflow-auto">
 
@@ -337,7 +338,7 @@
                 </div>
 
                 <div class="card-body pb-0">
-                  <h5 class="card-title">Name of the Project <span>| Date</span></h5>
+                  <h5 class="card-title"><%= project.title %> <span>| <%= new Date(project.createdAt).toLocaleDateString()%> </span></h5>
 
                   <table class="table table-borderless">
                     <thead>
@@ -348,19 +349,29 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><a href="#" class="text-primary fw-bold">Freelancer 1</a></td>
-                        <td>20.4.2028</td>
-                        <td class="fw-bold">₹ 4,500</td>
-                        <td>
-                          <button class="assign-btn">Assign</button>
-                        </td>
-                      </tr>
+                      <% if (project.projectBids && project.projectBids.length > 0) { %>
+                        <% project.projectBids.forEach((bid) => { %>
+                          <tr>
+                            <td><a href="#" class="text-primary fw-bold"><%= bid.freelancer ? bid.freelancer.firstName : 'Unknown' %></a></td>
+                            <td><%= bid.estimatedDateOfDelivery ? new Date(bid.estimatedDateOfDelivery).toLocaleDateString() : 'N/A' %></td>
+                            <td class="fw-bold">₹ <%= bid.bidAmmount.toLocaleString() || 'N/A' %></td>
+                            <td>
+                              <button class="assign-btn">Assign</button>
+                            </td>
+                          </tr>
+                        <% }); %>
+                      <% } else { %>
+                        <tr>
+                          <td colspan="4">No bids available for this project.</td>
+                        </tr>
+                      <% } %>
                     </tbody>
                   </table>
                 </div>
               </div>
-            </div><!-- End Top Selling -->
+            </div>
+            <% }) %>
+            <!-- End Top Selling -->
 
           </div>
         </div><!-- End Left side columns -->
@@ -381,7 +392,7 @@
                 <% projects.forEach((project) => { %>
                   <li class="project-item">
                     <span class="project-title"><%= project.title %></span>
-                    <span class="project-budget"><%= project.budget %></span>
+                    <span class="project-budget"><%= project.budget.toLocaleString() %></span>
                   </li>
                 <% }) %>
               </ul>
