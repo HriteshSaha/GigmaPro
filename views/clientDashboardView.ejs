@@ -356,7 +356,12 @@
                             <td><%= bid.estimatedDateOfDelivery ? new Date(bid.estimatedDateOfDelivery).toLocaleDateString() : 'N/A' %></td>
                             <td class="fw-bold">₹ <%= bid.bidAmmount.toLocaleString() || 'N/A' %></td>
                             <td>
-                              <button class="assign-btn">Assign</button>
+                              <!-- Inside the loop where you display bids in the client's dashboard -->
+                              <form action="/client/assign-work" method="POST">
+                                <input type="hidden" name="projectId" value="<%= project.id %>">
+                                <input type="hidden" name="freelancerId" value="<%= bid.userId %>">
+                                <button class="assign-btn" type="submit">Assign</button>
+                              </form>
                             </td>
                           </tr>
                         <% }); %>

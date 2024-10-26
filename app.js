@@ -16,6 +16,7 @@ const projects = require('./routes/projectCardRoute.js')
 const registrationDiversion = require('./routes/registrationDiversionRoute.js')
 const isAuthenticated = require('./middlewares/authenticationMiddleware.js')
 const isAuthorized = require('./middlewares/authorizationMiddleware.js')
+const projectAssignment = require('./routes/projectAssignmentRoute.js')
 
 
 const app = express();
@@ -44,6 +45,7 @@ app.use('/freelancer', isAuthenticated, isAuthorized(['Freelancer']), freelancer
 app.use('/freelancer', isAuthenticated, isAuthorized(['Freelancer']), bidSubmission);
 app.use('/client', isAuthenticated, isAuthorized(['Client']), clientDashboardRoute);
 app.use('/client', isAuthenticated, isAuthorized(['Client']), createProject);
+app.use('/client', isAuthenticated, isAuthorized(['Client']), projectAssignment);
 
 
 
