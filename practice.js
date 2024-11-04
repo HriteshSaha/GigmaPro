@@ -60,3 +60,18 @@ let arr = [1, 2, 3, 4, 5];
 let sliced = arr.slice(0, 4);
 console.log(sliced); // Output: [2, 3, 4]
 console.log(arr);    // Original array is unchanged: [1, 2, 3, 4, 5]
+
+// __________________________________________________________________________
+
+let arr1 = [ 2, 7, 7, 5, 2, 4, 5, 7, 6, 4, 1]
+for(let i = 0; i<arr1.length -1; i++){
+  for(let j = 0; j<arr1.length -i -1; j++){
+    if(arr1[j] > arr1[j+1]){
+      [arr1[j], arr1[j+1]] = [arr1[j+1], arr1[j]]
+    }
+  }
+}
+console.log(arr1);
+
+const newA = new Set(arr1)
+console.log(newA);
