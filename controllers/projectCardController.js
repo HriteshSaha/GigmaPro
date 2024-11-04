@@ -2,10 +2,27 @@ const { project } = require('../models')
 
 const projectCards = async (req, res)=> {
   try{
-    const allProject = await project.findAll()
-    res. render('projectCardView', {allProject: allProject})
+    const page = parseInt(req.query.page) || 1
+
+    const limit = 10
+
+    const offset = (page - 1) * limit
+
+    const { rows: allProjects, count } = await project.findAndCountAll({
+      limit: limit,
+      offset: offset
+    })
+
+    const totalPages = Math.ceil(count / limit)
+
+    res. render('projectCardView', {
+      allProject: allProjects,
+      currentPage: page,
+      totalPages: totalPages
+    })
   } catch(err) {
-    console.error("error while printing all projects", err);
+    console.error("Error while fetching paginated projects", err);
+    res.status(500).send("Server Error");
   }
 }
 

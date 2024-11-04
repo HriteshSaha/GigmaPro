@@ -121,7 +121,7 @@
 
       <div class="container">
         <!-- Example Project Card -->
-        <% allProject.forEach((project) => {%>
+        <% allProject.forEach((project) => { %>
           <div class="card">
             <h3>Project Name: <%= project.title %></h3>
             <p class="budget">Budget: <%= project.budget %></p>
@@ -133,8 +133,46 @@
                 <button type="submit">Place a Bid</button>
               </form>  
             </div>
+          </div>
+        <% }) %>
+        
+        <div class="pagination">
+          <!-- Previous Page Link -->
+          <% if (currentPage > 1) { %>
+            <a href="?page=<%= currentPage - 1 %>" class="prev">Previous</a>
+          <% } %>
+        
+          <!-- Page Numbers -->
+          <% for (let i = 1; i <= totalPages; i++) { %>
+            <a href="?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+          <% } %>
+        
+          <!-- Next Page Link -->
+          <% if (currentPage < totalPages) { %>
+            <a href="?page=<%= currentPage + 1 %>" class="next">Next</a>
+          <% } %>
         </div>
-        <%})%>
+        
+        <style>
+          .pagination a {
+            margin: 0 5px;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+          }
+          
+          .pagination a.active {
+            background-color: #007bff;
+            color: white;
+          }
+        
+          .pagination a.prev, .pagination a.next {
+            font-weight: bold;
+          }
+        </style>
+        
         
 
         <!-- Add more cards here if needed -->

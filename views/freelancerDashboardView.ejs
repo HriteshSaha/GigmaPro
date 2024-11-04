@@ -320,6 +320,7 @@
           <div class="row">
 
             <!-- Top Selling -->
+             <% Contracts.forEach((contract)=>{ %>
             <div class="col-12">
               <div class="card top-selling overflow-auto">
 
@@ -337,23 +338,23 @@
                 </div>
 
                 <div class="card-body pb-0">
-                  <h5 class="card-title"><%= Projects.title %> <span>| <%= new Date(Projects.createdAt).toLocaleDateString()%> </span></h5>
+                  <h5 class="card-title"><%= contract.project.title %> <span>| <%= contract.startDate.toLocaleDateString()%> </span></h5>
 
                   <table class="table table-borderless">
                     <thead>
                       <tr>
                         <th scope="col">Client</th>
                         <th scope="col">Date of delivery</th>
-                        <th scope="col">Payment</th>
+                        <th scope="col">Earning</th>
                       </tr>
                     </thead>
                     <tbody>
                           <tr>
-                            <td><a href="#" class="text-primary fw-bold">abc</a></td>
-                            <td>awerfaf</td>
-                            <td class="fw-bold">₹ 1212</td>
+                            <td><a href="#" class="text-primary fw-bold"><%= contract.project.client.firstName%></a></td>
+                            <td><%= contract.endDate.toLocaleDateString() %></td>
+                            <td class="fw-bold">₹ <%= contract.budget %></td>
                             <td>
-                              <button class="assign-btn">Pending</button>
+                              <button class="assign-btn">Submit</button>
                             </td>
                           </tr>
                     </tbody>
@@ -361,6 +362,7 @@
                 </div>
               </div>
             </div>
+            <% }) %>
             <!-- End Top Selling -->
 
           </div>
@@ -373,16 +375,16 @@
           <div class="card">
 
             <div class="card-body">
-              <h5 class="card-title">All Projects</h5>
+              <h5 class="card-title">Projects you have bid for: </h5>
               <ul class="project-list">
                 <li class="project-header">
                   <span class="project-title">Title</span>
-                  <span class="project-budget">My Bid (₹)</span>
+                  <span class="project-budget">Status</span>
                 </li>
-                <% Projects.forEach((project) => { %>
+                <% Bids.forEach((bid) => { %>
                   <li class="project-item">
-                    <span class="project-title"><%= project.title %></span>
-                    <span class="project-budget"><%= project.budget.toLocaleString() %></span>
+                    <span class="project-title"><%= bid.project.title %></span>
+                    <span class="project-budget"><%= bid.project.status %></span>
                   </li>
                 <% }) %>
               </ul>
