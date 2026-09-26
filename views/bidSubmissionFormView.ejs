@@ -240,22 +240,31 @@
 
           <div class="col-lg-5">
             <div class="bid-card">
-              <h3>Place a Bid</h3>
-              <p class="subtitle">Submit your quotation and delivery estimate for this project.</p>
+              <h3><%= existingBid ? 'Update Your Bid' : 'Place a Bid' %></h3>
+              <p class="subtitle">
+                <% if (existingBid) { %>
+                  You already placed a bid on this project — submitting again will update it.
+                <% } else { %>
+                  Submit your quotation and delivery estimate for this project.
+                <% } %>
+              </p>
 
+              <% if (typeof error !== 'undefined' && error) { %>
+                <p style="color:#d9534f;"><%= error %></p>
+              <% } %>
               <form action="/freelancer/bid-submission" method="post">
                 <input type="hidden" name="projectId" value="<%= project.id %>">
 
                 <label for="quotationAmount">Quotation Amount (₹)</label>
-                <input type="number" min="1" step="0.01" name="quotationAmount" id="quotationAmount" class="form-control" required>
+                <input type="number" min="1" step="0.01" name="quotationAmount" id="quotationAmount" class="form-control" value="<%= existingBid ? existingBid.bidAmmount : '' %>" required>
 
                 <label for="deliveryDate">Estimated Date of Delivery</label>
-                <input type="date" name="deliveryDate" id="deliveryDate" class="form-control" required>
+                <input type="date" name="deliveryDate" id="deliveryDate" class="form-control" value="<%= existingBid && existingBid.estimatedDateOfDelivery ? new Date(existingBid.estimatedDateOfDelivery).toISOString().slice(0,10) : '' %>" required>
 
                 <label for="pitch">Your Pitch</label>
-                <textarea name="pitch" id="pitch" rows="5" class="form-control" placeholder="Explain why you're a good fit for this project..."></textarea>
+                <textarea name="pitch" id="pitch" rows="5" class="form-control" placeholder="Explain why you're a good fit for this project..."><%= existingBid ? (existingBid.proposalDetails || '') : '' %></textarea>
 
-                <button type="submit" class="submit-bid-btn">Submit Bid</button>
+                <button type="submit" class="submit-bid-btn"><%= existingBid ? 'Update Bid' : 'Submit Bid' %></button>
               </form>
               <p class="fee-note">No listing or bidding fees on GigmaPro.</p>
             </div>

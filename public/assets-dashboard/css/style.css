@@ -1234,7 +1234,7 @@ h6 {
 
 /* _____________________ Assign project btn ____________________ */
 .assign-btn{
-  background-color: #717ff5;
+  background-color: #4154f1;
   color: white;
   border: none;
   border-radius: 5px;
@@ -1246,11 +1246,11 @@ h6 {
 }
 
 .assign-btn:hover {
-  background-color: #3546e2; /* Slightly darker shade on hover */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1); /* Adds a soft shadow on hover */
+  background-color: #37517E;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
 .assign-btn:active {
-  background-color: #bec2e9;
+  background-color: #2e4262;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -1319,7 +1319,7 @@ ul.project-list li:not(:last-child) {
 }
 
 .add-project-btn {
-  background-color: green; 
+  background-color: #4154f1;
   color: white;
   padding: 10px 20px;
   text-decoration: none;
@@ -1330,13 +1330,13 @@ ul.project-list li:not(:last-child) {
 }
 
 .add-project-btn:hover {
-  background-color: rgb(128, 201, 18);
+  background-color: #37517E;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   color: white;
 }
 
 .add-project-btn:active {
-  background-color: #66ff00;
+  background-color: #2e4262;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 

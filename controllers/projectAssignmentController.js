@@ -1,6 +1,6 @@
 const { project, contract, bid, user } = require('../models')
 
-module.exports = async (req, res) => {
+module.exports = async (req, res, next) => {
   const { projectId, freelancerId } = req.body;
 
   try {
@@ -33,6 +33,6 @@ module.exports = async (req, res) => {
       res.redirect('/client/dashboard');
   } catch (error) {
       console.error(error);
-      res.status(500).send('Internal Server Error');
+      next(error);
   }
 };

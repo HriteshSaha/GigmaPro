@@ -1,8 +1,8 @@
-const { bidSubmission, handleBidSubmission } = require('../controllers/bidSubmissionController.js')
+const { bidSubmission, handleBidSubmission, validateBidSubmission } = require('../controllers/bidSubmissionController.js')
 const router = require('express').Router()
 
 router.get('/bid-submission/:projectId', bidSubmission)
 
-router.post('/bid-submission', handleBidSubmission)
+router.post('/bid-submission', validateBidSubmission, handleBidSubmission)
 
 module.exports = router

@@ -1,6 +1,7 @@
 const { project, skill } = require('../models')
+const CATEGORIES = require('../config/categories')
 
-const projectCards = async (req, res)=> {
+const projectCards = async (req, res, next)=> {
   try{
     const page = parseInt(req.query.page) || 1
 
@@ -8,8 +9,15 @@ const projectCards = async (req, res)=> {
 
     const offset = (page - 1) * limit
 
+    const selectedCategory = CATEGORIES.some(c => c.name === req.query.category) ? req.query.category : null
+
+    const where = { status: 'open' }
+    if (selectedCategory) {
+      where.category = selectedCategory
+    }
+
     const { rows: allProjects, count } = await project.findAndCountAll({
-      where: { status: 'open' },
+      where,
       order: [['createdAt', 'DESC']],
       limit: limit,
       offset: offset,
@@ -24,11 +32,13 @@ const projectCards = async (req, res)=> {
       allProject: allProjects,
       currentPage: page,
       totalPages: totalPages,
-      dashboardUrl
+      dashboardUrl,
+      categories: CATEGORIES,
+      selectedCategory
     })
   } catch(err) {
     console.error("Error while fetching paginated projects", err);
-    res.status(500).send("Server Error");
+    next(err);
   }
 }
 

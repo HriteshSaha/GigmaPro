@@ -1,15 +1,19 @@
 # GigmaPro
 
+[![CI](https://github.com/HriteshSaha/GigmaPro/actions/workflows/ci.yml/badge.svg)](https://github.com/HriteshSaha/GigmaPro/actions/workflows/ci.yml)
+
 GigmaPro is a full-stack freelance marketplace — think a small-scale Upwork clone — where **clients** post projects and **freelancers** bid on them. Built with Express, EJS, and MySQL (Sequelize ORM), using server-rendered views and session-based auth.
 
 ## Features
 
 - Separate signup/login flows for **clients** and **freelancers**, with role-based route protection
-- Clients can post projects, review incoming bids, and assign a freelancer (which creates a contract)
-- Freelancers can browse open projects (paginated) and submit bids with a quotation, pitch, and delivery estimate
-- Role-aware dashboards: clients see their projects and bids received; freelancers see their bid history and active contracts
+- Clients can post projects (with a category and required skills), review incoming bids, and assign a freelancer (which creates a contract)
+- Freelancers can browse open projects — filterable by category, paginated — and submit bids with a quotation, pitch, and delivery estimate; re-submitting updates their existing bid instead of creating a duplicate
+- Role-aware dashboards with real stats (projects posted, bids received, active contracts, contract value)
 - Password hashing with bcrypt, session-based authentication with `express-session`
+- Server-side input validation (`express-validator`), security headers (`helmet`), and rate-limiting on auth endpoints
 - Relational data model (Sequelize): users, projects, bids, contracts, and a skills taxonomy (many-to-many with both users and projects)
+- Integration test suite (Jest + Supertest) covering auth, bidding, and routing, run in CI on every push
 
 ## Tech stack
 
@@ -91,15 +95,29 @@ npm run dev         # auto-restart on file changes (nodemon)
 
 The app runs on `http://localhost:8000` by default (configurable via `PORT` in `.env`).
 
+## Running tests
+
+Tests run against a separate `gigmapro_test` database (never your dev data), using Jest + Supertest for HTTP-level integration tests against the real Express app and MySQL.
+
+```bash
+mysql -u root -p -e "CREATE DATABASE gigmapro_test;"
+npm run migrate:test   # applies migrations to gigmapro_test
+npm test
+```
+
+Set `DB_NAME_TEST` in `.env` if you want a different test database name (see `.env.example`). CI runs this same suite against a fresh MySQL service container on every push (see `.github/workflows/ci.yml`).
+
 ## Available npm scripts
 
-| Script              | Purpose                                    |
-|---------------------|---------------------------------------------|
-| `npm start`         | Start the server                            |
-| `npm run dev`       | Start with nodemon for local development    |
-| `npm run migrate`   | Apply all pending Sequelize migrations      |
-| `npm run seed`      | Run the demo data seeder                    |
-| `npm run db:setup`  | Migrate + seed in one step                  |
+| Script                | Purpose                                      |
+|-----------------------|-----------------------------------------------|
+| `npm start`           | Start the server                              |
+| `npm run dev`         | Start with nodemon for local development      |
+| `npm run migrate`     | Apply all pending Sequelize migrations         |
+| `npm run migrate:test`| Apply migrations to the test database          |
+| `npm run seed`        | Run the demo data seeder                      |
+| `npm run db:setup`    | Migrate + seed in one step                    |
+| `npm test`            | Run the Jest/Supertest test suite             |
 
 ## Deploying for free
 

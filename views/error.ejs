@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>GigmaPro - <%= statusCode %></title>
+  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #f5f6f8;
+      color: #37517E;
+      text-align: center;
+      padding: 20px;
+    }
+    .code {
+      font-size: 5rem;
+      font-weight: 700;
+      color: #4154f1;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      margin: 0 0 10px;
+    }
+    p {
+      color: #6b7280;
+      max-width: 420px;
+      margin: 0 0 24px;
+    }
+    a.home-link {
+      display: inline-block;
+      padding: 10px 24px;
+      background: #4154f1;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    a.home-link:hover { background: #37517E; }
+    .logo {
+      margin-bottom: 30px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #37517E;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="logo">GigmaPro</a>
+  <div class="code"><%= statusCode %></div>
+  <h1><%= title %></h1>
+  <p><%= message %></p>
+  <a href="/" class="home-link">Back to Home</a>
+</body>
+</html>

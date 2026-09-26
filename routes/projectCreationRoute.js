@@ -1,8 +1,8 @@
-const { projectCreationForm, handleProjectCreation } = require('../controllers/projectCreationController.js')
+const { projectCreationForm, handleProjectCreation, validateProjectCreation } = require('../controllers/projectCreationController.js')
 const router = require('express').Router()
 
 router.get('/create-project', projectCreationForm)
 
-router.post('/create-project', handleProjectCreation)
+router.post('/create-project', validateProjectCreation, handleProjectCreation)
 
 module.exports = router

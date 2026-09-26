@@ -1,6 +1,6 @@
 const { user, project, bid, contract } = require('../models')
 
-const freelancerDashboard = async (req, res) => {
+const freelancerDashboard = async (req, res, next) => {
   try {
     const userId = req.session.user.id
 
@@ -48,7 +48,7 @@ const freelancerDashboard = async (req, res) => {
     })
   } catch (error) {
     console.error('Error fetching freelancer dashboard:', error);
-    res.status(500).send('Server Error');
+    next(error);
   }
 }
 

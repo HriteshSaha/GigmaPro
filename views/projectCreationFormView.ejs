@@ -66,23 +66,43 @@
           <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
+                    <% if (typeof error !== 'undefined' && error) { %>
+                      <p style="color:#d9534f;"><%= error %></p>
+                    <% } %>
                     <form action="/client/create-project" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
                         <div class="row gy-4">
                             <div class="col-md-6">
                                 <label for="name-field" class="pb-2">Title</label>
-                                <input type="text" name="title" id="name-field" class="form-control" required="">
+                                <input type="text" name="title" id="name-field" class="form-control" value="<%= values.title || '' %>" required="">
                             </div>
                             <div class="col-md-6">
-                                <label for="email-field" class="pb-2">Budget</label>
-                                <input type="number" step="0.01" class="form-control" name="budget" id="email-field" required="">
+                                <label for="email-field" class="pb-2">Budget (₹)</label>
+                                <input type="number" step="0.01" min="1" class="form-control" name="budget" id="email-field" value="<%= values.budget || '' %>" required="">
                             </div>
                             <div class="col-md-12">
                                 <label for="subject-field" class="pb-2">Category</label>
-                                <input type="text" class="form-control" name="category" id="subject-field" required="">
+                                <select class="form-control" name="category" id="subject-field" required="">
+                                  <option value="" disabled <%= !values.category ? 'selected' : '' %>>Choose a category</option>
+                                  <% categories.forEach((cat) => { %>
+                                    <option value="<%= cat.name %>" <%= values.category === cat.name ? 'selected' : '' %>><%= cat.name %></option>
+                                  <% }) %>
+                                </select>
                             </div>
                             <div class="col-md-12">
-                                <label for="message-  field" class="pb-2">Description</label>
-                                <textarea class="form-control" name="description" cols="40" rows="10" id="message-field" required=""></textarea>
+                                <label class="pb-2">Skills required</label>
+                                <% const selectedSkills = [].concat(values.skills || []).map(String); %>
+                                <div class="d-flex flex-wrap gap-3">
+                                  <% skills.forEach((s) => { %>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" name="skills" value="<%= s.id %>" id="skill-<%= s.id %>" <%= selectedSkills.includes(String(s.id)) ? 'checked' : '' %>>
+                                      <label class="form-check-label" for="skill-<%= s.id %>"><%= s.name %></label>
+                                    </div>
+                                  <% }) %>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="message-field" class="pb-2">Description</label>
+                                <textarea class="form-control" name="description" cols="40" rows="10" id="message-field" required=""><%= values.description || '' %></textarea>
                             </div>
                             <div class="col-md-12 text-center">
                                 <button type="submit">Add project</button>

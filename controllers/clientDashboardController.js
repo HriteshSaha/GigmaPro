@@ -1,6 +1,6 @@
 const { project, bid, user, contract } = require('../models')
 
-const clientDashboard = async (req, res) => {
+const clientDashboard = async (req, res, next) => {
   try {
     const clientId = req.session.user.id
 
@@ -39,8 +39,7 @@ const clientDashboard = async (req, res) => {
   })
   }catch(error){
     console.error('Error fetching client dashboard:', error);
-    res.status(500).send('Server Error');
-
+    next(error);
   }
 
 }

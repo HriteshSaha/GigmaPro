@@ -9,6 +9,10 @@ const handleLogin = async (req, res)=>{
   const {email, password} = req.body
   try {
 
+    if (!email || !password) {
+      return res.status(400).render('loginFormView', {error: 'Wrong email or password'})
+    }
+
     //checking if user exist or not.
     const isUser = await user.findOne({where:{email}})
     if (!isUser){

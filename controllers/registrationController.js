@@ -1,5 +1,13 @@
 const { user } = require('../models')
 const bcrypt = require('bcryptjs')
+const { body, validationResult } = require('express-validator')
+
+const registrationRules = [
+  body('firstName').trim().notEmpty().withMessage('First name is required'),
+  body('lastName').trim().notEmpty().withMessage('Last name is required'),
+  body('email').trim().isEmail().withMessage('Please enter a valid email address').normalizeEmail(),
+  body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
+]
 
 // _________Render client registration form__________
 const clientRegistrationForm = (req, res) => {
@@ -9,6 +17,11 @@ const clientRegistrationForm = (req, res) => {
 // _________Handling registration of client__________
 const registerClient = async (req, res) => {
   const {firstName, lastName, email, password, organization} = req.body
+
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).render('clientRegistrationFormView', { error: errors.array()[0].msg })
+  }
 
   try{
     const existUser = await user.findOne({where:{email}})
@@ -46,6 +59,11 @@ const freelancerRegistrationForm = (req, res) => {
 const registerFreelancer = async (req, res) => {
   const {firstName, lastName, email, password} = req.body
 
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).render('freelancerRegistrationFormView', { error: errors.array()[0].msg })
+  }
+
   try{
     const existUser = await user.findOne({where:{email}})
     if(existUser){
@@ -75,5 +93,6 @@ module.exports = {
   clientRegistrationForm,
   registerClient,
   freelancerRegistrationForm,
-  registerFreelancer
+  registerFreelancer,
+  registrationRules
 }

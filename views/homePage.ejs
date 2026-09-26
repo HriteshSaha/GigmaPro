@@ -183,7 +183,7 @@
         <div class="row gy-4">
           <% categories.forEach((cat) => { %>
             <div class="col-lg-2 col-md-4 col-6">
-              <a href="/projects" class="category-card">
+              <a href="/projects?category=<%= encodeURIComponent(cat.name) %>" class="category-card">
                 <i class="bi <%= cat.icon %>"></i>
                 <span><%= cat.name %></span>
               </a>
@@ -692,7 +692,7 @@
           <h4>Categories</h4>
           <ul>
             <% categories.slice(0, 4).forEach((cat) => { %>
-              <li><i class="bi bi-chevron-right"></i> <a href="/projects"><%= cat.name %></a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/projects?category=<%= encodeURIComponent(cat.name) %>"><%= cat.name %></a></li>
             <% }) %>
           </ul>
         </div>

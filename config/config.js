@@ -17,7 +17,8 @@ module.exports = {
     database: process.env.DB_NAME_TEST || 'gigmapro_test',
     host: process.env.DB_HOST || '127.0.0.1',
     port: process.env.DB_PORT || 3306,
-    dialect: 'mysql'
+    dialect: 'mysql',
+    logging: false
   },
   production: {
     use_env_variable: 'DATABASE_URL',
