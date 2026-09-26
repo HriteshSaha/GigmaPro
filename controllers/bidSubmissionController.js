@@ -19,16 +19,16 @@ const handleBidSubmission = async (req, res) => {
       return res.status(403).json({message:'This project is already been assigned'})
     }
 
-    const newBid = await bid.create({
-      bidAmmount: quotationAmount, // Amount spelling bhul korechi db te tai ekhane o bhul
+    await bid.create({
+      bidAmmount: quotationAmount,
       proposalDetails: pitch,
       submittedAt: new Date(),
       estimatedDateOfDelivery: deliveryDate,
       userId,
       projectId
-    }) 
+    })
 
-    return res.status(201).json({ message: 'Bid submitted successfully', newBid });
+    return res.redirect('/freelancer/dashboard');
   } catch(err){
     console.error(err);
     return res.status(500).json({message: 'Error while placing bid'})

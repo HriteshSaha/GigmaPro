@@ -266,7 +266,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="/dashboard-user-client">
+        <a class="nav-link " href="/freelancer/dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -338,7 +338,7 @@
                 </div>
 
                 <div class="card-body pb-0">
-                  <h5 class="card-title"><%= contract.project.title %> <span>| <%= contract.startDate.toLocaleDateString()%> </span></h5>
+                  <h5 class="card-title"><%= contract.project.title %> <span>| <%= new Date(contract.startDate).toLocaleDateString()%> </span></h5>
 
                   <table class="table table-borderless">
                     <thead>
@@ -351,8 +351,8 @@
                     <tbody>
                           <tr>
                             <td><a href="#" class="text-primary fw-bold"><%= contract.project.client.firstName%></a></td>
-                            <td><%= contract.endDate.toLocaleDateString() %></td>
-                            <td class="fw-bold">₹ <%= contract.budget %></td>
+                            <td><%= contract.endDate ? new Date(contract.endDate).toLocaleDateString() : 'N/A' %></td>
+                            <td class="fw-bold">₹ <%= Number(contract.budget || 0).toLocaleString() %></td>
                             <td>
                               <button class="assign-btn">Submit</button>
                             </td>

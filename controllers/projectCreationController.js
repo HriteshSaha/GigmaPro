@@ -17,7 +17,7 @@ const handleProjectCreation = async (req, res)=> {
     description,
     clientUserId: req.session.user.id
   })
-  res.redirect(301, '/client/dashboard')
+  res.redirect('/client/dashboard')
   }catch(err){
     console.error('Error: ', err);
     res.status(500).json({msg: 'error during project creation', err})

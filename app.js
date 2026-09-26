@@ -22,16 +22,21 @@ const projectAssignment = require('./routes/projectAssignmentRoute.js')
 const app = express();
 const port = process.env.PORT || 3000;
 
+if (process.env.NODE_ENV === 'production') {
+  // Trust the platform's reverse proxy (Railway/Render/etc.) so secure cookies work
+  app.set('trust proxy', 1);
+}
+
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }))
 //configuring session
 app.use(session({
-  secret: 'HriteshSaha@',
+  secret: process.env.SESSION_SECRET,
   name: 'gigmaProAuthSession',
   resave: false,
   saveUninitialized: false,
-  cookie: {secure: false, maxAge: 24 * 60 * 60 * 1000}
+  cookie: {secure: process.env.NODE_ENV === 'production', maxAge: 24 * 60 * 60 * 1000}
 }))
 
 app.use('/', homeRoute);

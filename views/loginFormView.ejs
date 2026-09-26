@@ -34,8 +34,11 @@
               <div class="mb-4">
               <h3>Log In</h3>
               <p class="mb-4">Enter your credentials to log in.</p>
+              <% if (typeof error !== 'undefined' && error) { %>
+                <p class="mb-3" style="color:#d9534f;"><%= error %></p>
+              <% } %>
             </div>
-            <form action="#" method="post">
+            <form action="/login" method="post">
               <div class="form-group first mb-3">
                 <input type="text" class="form-control" id="username" name="email" required placeholder=" ">
                 <label for="username">Email</label>

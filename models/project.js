@@ -13,6 +13,10 @@ module.exports = (sequelize, DataType) => {
       type: DataType.FLOAT,
       allowNull: true
     },
+    category: {
+      type: DataType.STRING,
+      allowNull: true
+    },
     freelancerUserId: {
       type: DataType.INTEGER,
       allowNull: true,

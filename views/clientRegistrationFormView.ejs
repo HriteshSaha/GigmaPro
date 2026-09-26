@@ -32,6 +32,9 @@
                         <div class="mb-4">
                             <h3>Create Account</h3>
                             <p class="mb-4">Please fill in the details to create an account.</p>
+                            <% if (typeof error !== 'undefined' && error) { %>
+                              <p style="color:#d9534f;"><%= error %></p>
+                            <% } %>
                         </div>
                         <form action="/signup-client" method="post">
                             <div class="form-group first mb-3">

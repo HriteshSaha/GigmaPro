@@ -266,7 +266,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="/dashboard-user-client">
+        <a class="nav-link " href="/client/dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -397,7 +397,7 @@
                 <% projects.forEach((project) => { %>
                   <li class="project-item">
                     <span class="project-title"><%= project.title %></span>
-                    <span class="project-budget"><%= project.budget.toLocaleString() %></span>
+                    <span class="project-budget"><%= Number(project.budget || 0).toLocaleString() %></span>
                   </li>
                 <% }) %>
               </ul>

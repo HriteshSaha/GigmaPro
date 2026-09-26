@@ -7,14 +7,18 @@ module.exports = async (req, res) => {
       // Find the project and freelancer
       const Project = await project.findByPk(projectId);
       const freelancer = await user.findByPk(freelancerId);
-      const Bid = await bid.findOne({where:{projectId : Project.id, userId: freelancer.id}})
 
       if (!Project || !freelancer) {
           return res.status(404).send('Project or Freelancer not found');
       }
 
+      const Bid = await bid.findOne({where:{projectId : Project.id, userId: freelancer.id}})
+      if (!Bid) {
+          return res.status(404).send('No bid found for this freelancer on this project');
+      }
+
       // Create a contract between the client and freelancer
-      const contracts = await contract.create({
+      await contract.create({
           startDate: new Date(),
           endDate: Bid.estimatedDateOfDelivery,
           budget: Bid.bidAmmount,
@@ -23,10 +27,10 @@ module.exports = async (req, res) => {
           clientUserId: req.session.user.id
       });
 
-      // Update project status to 'assigned'
+      // Update project status to 'closed'
       await Project.update({ status: 'closed' });
 
-      res.status(200).send('Work assigned successfully');
+      res.redirect('/client/dashboard');
   } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');

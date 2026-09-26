@@ -2,7 +2,7 @@ const { user } = require('../models')
 const bcrypt = require('bcryptjs')
 
 const loginForm = (req, res)=> {
-  res.render('loginFormView')
+  res.render('loginFormView', {error: null})
 }
 
 const handleLogin = async (req, res)=>{
@@ -12,13 +12,13 @@ const handleLogin = async (req, res)=>{
     //checking if user exist or not.
     const isUser = await user.findOne({where:{email}})
     if (!isUser){
-      return res.status(400).json({message:'Wrong username or password'})
+      return res.status(400).render('loginFormView', {error: 'Wrong email or password'})
     }
 
     // check if the password is correct or not
     const checkPassowrd = await bcrypt.compare(password, isUser.password)
     if (!checkPassowrd) {
-      return res.status(400).json({message:'Wrong username or password'})
+      return res.status(400).render('loginFormView', {error: 'Wrong email or password'})
     }
 
     // adding session
@@ -39,12 +39,8 @@ const handleLogin = async (req, res)=>{
       return res.redirect('/freelancer/dashboard')
     }
   } catch (error) {
-    // res.status(500).json({ message: 'Error logging in', error });
-    console.error('Error logging in:', error);  // Logs full error details
-    return res.status(500).json({
-      message: 'Error logging in',
-      error: error.message || 'Unknown error',  // Logs the error message
-    });
+    console.error('Error logging in:', error);
+    return res.status(500).render('loginFormView', {error: 'Something went wrong. Please try again.'})
   }
 
 
