@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+<%- include('partials/themeInit') %>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>GigmaPro - Hire Freelancers & Find Freelance Work</title>
   <meta name="description" content="GigmaPro is a freelance marketplace where clients post projects and freelancers bid to win the work.">
@@ -26,6 +27,7 @@
 
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
+  <link href="/assets/css/dark-mode.css" rel="stylesheet">
 
   <style>
     .category-card {
@@ -143,6 +145,7 @@
       </nav>
 
       <a class="btn-getstarted" href="/client/create-project">Post a Project</a>
+<%- include('partials/themeToggleButton') %>
     </div>
   </header>
 
@@ -735,7 +738,7 @@
 
   <!-- Main JS File -->
   <script src="/assets/js/main.js"></script>
-
+<%- include('partials/themeScript') %>
 </body>
 
 </html>

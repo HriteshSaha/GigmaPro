@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+<%- include('partials/themeInit') %>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>GigmaPro - Find Work</title>
   <meta name="description" content="Browse open projects on GigmaPro and place a bid.">
@@ -23,6 +24,7 @@
 
   <!-- Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
+  <link href="/assets/css/dark-mode.css" rel="stylesheet">
 
   <style>
     .projects-hero {
@@ -170,6 +172,7 @@
       </nav>
 
       <a class="btn-getstarted" href="<%= dashboardUrl %>">Back to Dashboard</a>
+<%- include('partials/themeToggleButton') %>
     </div>
   </header>
 
@@ -297,7 +300,7 @@
 
   <!-- Main JS File -->
   <script src="/assets/js/main.js"></script>
-
+<%- include('partials/themeScript') %>
 </body>
 
 </html>

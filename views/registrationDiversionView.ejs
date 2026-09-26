@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<%- include('partials/themeInit') %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join as a client or freelancer</title>
+    <link rel="stylesheet" href="/assets/css/dark-mode.css">
     <style>
       * {
         margin: 0;
@@ -100,25 +102,29 @@
     </style>
 </head>
 <body>
+    <div style="position: fixed; top: 16px; right: 16px; z-index: 1000;">
+      <%- include('partials/themeToggleButton', {onLight: true}) %>
+    </div>
     <div class="container">
         <h1>Join as a client or freelancer</h1>
         <div class="cards">
-            <a href="signup-client" class="card">
+            <a href="/signup-client" class="card">
                 <div class="card-content">
-                    <img src="images/client-logo.svg" alt="client-logo">
+                    <img src="/images/client-logo.svg" alt="client-logo">
                     <h2>I am a client, hiring for a project</h2>
                 </div>
             </a>
-            <a href="signup-freelancer" class="card">
+            <a href="/signup-freelancer" class="card">
                 <div class="card-content">
-                    <img src="images/user-logo.svg" alt="freelancer-logo">
+                    <img src="/images/user-logo.svg" alt="freelancer-logo">
                     <h2>I am a freelancer, looking for a project</h2>
                 </div>
             </a>
         </div>
         <div class="login">
-            <p>Already have an account? <a href="login">Log In</a></p>
+            <p>Already have an account? <a href="/login">Log In</a></p>
         </div>
     </div>
+<%- include('partials/themeScript') %>
 </body>
 </html>
