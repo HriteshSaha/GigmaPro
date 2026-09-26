@@ -2017,5 +2017,6 @@ section,
 # GigmaPro Logo
 --------------------------------------------------------------*/
 #gigmaLogo{
-  height: 100px !important;
+  height: 40px;
+  width: auto;
 }

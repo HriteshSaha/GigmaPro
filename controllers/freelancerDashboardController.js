@@ -32,11 +32,19 @@ const freelancerDashboard = async (req, res) => {
       order: [['createdAt', 'DESC']]
     })
 
+    const activeContracts = Contracts.filter(c => c.status === 'active').length
+    const contractValue = Contracts.reduce((total, c) => total + Number(c.budget || 0), 0)
+
     res.render('freelancerDashboardView', {
       firstName: req.session.user.firstName,
       lastName: req.session.user.lastName,
       Bids,
-      Contracts
+      Contracts,
+      stats: {
+        totalBids: Bids.length,
+        activeContracts,
+        contractValue
+      }
     })
   } catch (error) {
     console.error('Error fetching freelancer dashboard:', error);

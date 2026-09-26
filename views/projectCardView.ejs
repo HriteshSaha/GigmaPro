@@ -156,11 +156,12 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
       <a href="/" class="logo d-flex align-items-center me-auto">
-        <img src="/assets/img/GigmaProLogo.png" alt="GigmaPro" id="gigmaLogo">
+        <img src="/assets/img/gigmapro-logo-light.svg" alt="GigmaPro" id="gigmaLogo">
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
+          <li><a href="<%= dashboardUrl %>"><i class="bi bi-grid me-1"></i>Dashboard</a></li>
           <li><a href="/">Home</a></li>
           <li><a href="/projects" class="active">Find work</a></li>
           <li><a href="/logout">Logout</a></li>
@@ -168,7 +169,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="/client/create-project">Post a Project</a>
+      <a class="btn-getstarted" href="<%= dashboardUrl %>">Back to Dashboard</a>
     </div>
   </header>
 

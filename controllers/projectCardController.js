@@ -18,10 +18,13 @@ const projectCards = async (req, res)=> {
 
     const totalPages = Math.ceil(count / limit)
 
+    const dashboardUrl = req.session.user.role === 'Client' ? '/client/dashboard' : '/freelancer/dashboard'
+
     res.render('projectCardView', {
       allProject: allProjects,
       currentPage: page,
-      totalPages: totalPages
+      totalPages: totalPages,
+      dashboardUrl
     })
   } catch(err) {
     console.error("Error while fetching paginated projects", err);

@@ -58,7 +58,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="/">
-        <img src="/assets/img/GigmaProLogo.png" alt="GigmaPro" id="gigmaLogo" style="width: 50%; height: auto;">
+        <img src="/assets/img/gigmapro-logo.svg" alt="GigmaPro" id="gigmaLogo" style="height: 36px; width: auto;">
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -143,6 +143,58 @@
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
+
+      <!-- Stats -->
+      <div class="row">
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card sales-card">
+            <div class="card-body">
+              <h5 class="card-title">Bids Placed</h5>
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-send"></i>
+                </div>
+                <div class="ps-3">
+                  <h6><%= stats.totalBids %></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card customers-card">
+            <div class="card-body">
+              <h5 class="card-title">Active Contracts</h5>
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-file-earmark-check"></i>
+                </div>
+                <div class="ps-3">
+                  <h6><%= stats.activeContracts %></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card revenue-card">
+            <div class="card-body">
+              <h5 class="card-title">Total Contract Value</h5>
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-cash-stack"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>₹<%= stats.contractValue.toLocaleString() %></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Stats -->
+
       <div class="row">
 
         <!-- Left side columns -->

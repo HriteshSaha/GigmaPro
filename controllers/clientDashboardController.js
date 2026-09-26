@@ -1,4 +1,4 @@
-const { project, bid, user } = require('../models')
+const { project, bid, user, contract } = require('../models')
 
 const clientDashboard = async (req, res) => {
   try {
@@ -21,17 +21,28 @@ const clientDashboard = async (req, res) => {
       }
     ]
   });
-  res.render('clientDashboardView', { 
+
+  const activeContracts = await contract.count({ where: { clientUserId: clientId, status: 'active' } })
+  const bidsReceived = projects.reduce((total, p) => total + (p.projectBids ? p.projectBids.length : 0), 0)
+  const openProjects = projects.filter(p => p.status === 'open').length
+
+  res.render('clientDashboardView', {
     firstName: req.session.user.firstName,
     lastName: req.session.user.lastName,
-    projects
+    projects,
+    stats: {
+      totalProjects: projects.length,
+      openProjects,
+      bidsReceived,
+      activeContracts
+    }
   })
   }catch(error){
     console.error('Error fetching client dashboard:', error);
     res.status(500).send('Server Error');
-    
+
   }
-  
+
 }
 
 module.exports = clientDashboard

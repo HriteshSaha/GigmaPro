@@ -1,0 +1,17 @@
+<svg width="220" height="56" viewBox="0 0 220 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GigmaPro">
+  <defs>
+    <linearGradient id="gpMarkLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6c7dff"/>
+      <stop offset="100%" stop-color="#4154f1"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="56" height="56" rx="14" fill="url(#gpMarkLight)"/>
+  <text x="28" y="39" text-anchor="middle"
+        font-family="'Segoe UI', -apple-system, Helvetica, Arial, sans-serif"
+        font-size="30" font-weight="800" fill="#ffffff">G</text>
+
+  <text x="68" y="38"
+        font-family="'Segoe UI', -apple-system, Helvetica, Arial, sans-serif"
+        font-size="28" font-weight="700" fill="#ffffff">Gigma<tspan fill="#a9b3ff">Pro</tspan></text>
+</svg>

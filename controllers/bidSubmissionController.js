@@ -1,8 +1,24 @@
-const { project, bid } = require('../models')
+const { project, bid, user, skill } = require('../models')
 
-const bidSubmission = (req, res)=> {
+const bidSubmission = async (req, res) => {
   const projectId = req.params.projectId
-  res.render('bidSubmissionFormView', {projectId})
+
+  const foundProject = await project.findByPk(projectId, {
+    include: [
+      { model: user, as: 'client', attributes: ['firstName', 'lastName', 'organization'] },
+      { model: skill, as: 'skills', attributes: ['name'] }
+    ]
+  })
+
+  if (!foundProject) {
+    return res.redirect('/projects')
+  }
+
+  if (foundProject.status !== 'open') {
+    return res.redirect('/projects')
+  }
+
+  res.render('bidSubmissionFormView', { project: foundProject })
 }
 
 const handleBidSubmission = async (req, res) => {
