@@ -3,7 +3,6 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-<%- include('partials/themeInit') %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
@@ -16,15 +15,10 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/assets/css/dark-mode.css">
 
     <title>Sign Up as a Client - GigmaPro</title>
 </head>
 <body>
-
-<div style="position: fixed; top: 16px; right: 16px; z-index: 1000;">
-  <%- include('partials/themeToggleButton', {onLight: true}) %>
-</div>
 
 <div class="content">
     <div class="container">
@@ -80,6 +74,5 @@
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/main.js"></script>
-<%- include('partials/themeScript') %>
 </body>
 </html>

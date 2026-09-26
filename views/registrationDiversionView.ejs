@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<%- include('partials/themeInit') %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join as a client or freelancer</title>
-    <link rel="stylesheet" href="/assets/css/dark-mode.css">
     <style>
       * {
         margin: 0;
@@ -102,9 +100,6 @@
     </style>
 </head>
 <body>
-    <div style="position: fixed; top: 16px; right: 16px; z-index: 1000;">
-      <%- include('partials/themeToggleButton', {onLight: true}) %>
-    </div>
     <div class="container">
         <h1>Join as a client or freelancer</h1>
         <div class="cards">
@@ -125,6 +120,5 @@
             <p>Already have an account? <a href="/login">Log In</a></p>
         </div>
     </div>
-<%- include('partials/themeScript') %>
 </body>
 </html>

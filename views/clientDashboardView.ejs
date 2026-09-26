@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="utf-8">
-<%- include('partials/themeInit') %>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Dashboard - <%= firstName %></title>
@@ -29,8 +28,6 @@
 
   <!-- Template Main CSS File -->
   <link href="/assets-dashboard/css/style.css" rel="stylesheet">
-
-  <link href="/assets/css/dark-mode.css" rel="stylesheet">
 
   <style>
     .status-badge {
@@ -110,10 +107,6 @@
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-flex align-items-center pe-3">
-          <%- include('partials/themeToggleButton', {onLight: true}) %>
-        </li>
 
         <li class="nav-item dropdown pe-3">
 
@@ -356,7 +349,6 @@
 
   <!-- Template Main JS File -->
   <script src="/assets-dashboard/js/main.js"></script>
-<%- include('partials/themeScript') %>
 </body>
 
 </html>
