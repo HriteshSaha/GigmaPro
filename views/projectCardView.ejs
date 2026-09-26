@@ -4,9 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>GigmaPro - All Project</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>GigmaPro - Find Work</title>
+  <meta name="description" content="Browse open projects on GigmaPro and place a bid.">
 
   <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon">
@@ -21,75 +20,134 @@
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="/css/addProject.css" rel="stylesheet">
+  <link href="/assets/css/main.css" rel="stylesheet">
+
   <style>
-    .container {
-        width: 100%;
-        max-width: 1200px;
-        padding: 20px;
+    .projects-hero {
+      padding: 140px 0 40px;
+      background: #37517E;
+      color: #fff;
+      text-align: center;
     }
-
-    .card {
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        padding: 20px;
-        margin-bottom: 20px;
+    .projects-hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
-
-    .card h3 {
-        color: #37517E;
-        font-size: 22px;
-        margin-bottom: 10px;
+    .projects-hero p {
+      color: #cbd3e6;
+      margin: 0;
     }
-
-    .card p {
-        margin: 8px 0;
-        color: #555;
-        font-size: 14px;
+    .projects-grid {
+      padding: 50px 0 70px;
+      background: #f5f6f8;
+      min-height: 50vh;
     }
-
-    .card .budget {
-        color: #28a745;
-        font-weight: bold;
+    .project-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      padding: 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-
-    .card .category,
-    .card .skills {
-        color: #007bff;
-        font-style: italic;
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.1);
     }
-
-    .card .description {
-        margin: 10px 0;
-        font-size: 14px;
-        line-height: 1.5;
+    .project-card .badge-category {
+      display: inline-block;
+      background: #eef1ff;
+      color: #4154f1;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      align-self: flex-start;
     }
-
-    .card button {
-        padding: 10px 15px;
-        background-color: #37517E;
-        color: #ffffff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
+    .project-card h3 {
+      color: #37517E;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
-
-    .card button:hover {
-        background-color: #2e4262;
+    .project-card .description {
+      color: #6b7280;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      flex-grow: 1;
     }
-
-    .card-footer {
-        text-align: right;
-        margin-top: 15px;
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
     }
-</style>
+    .skill-tag {
+      background: #f1f3f5;
+      color: #37517E;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .project-card .budget {
+      color: #28a745;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+    }
+    .project-card .place-bid-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 15px;
+      background-color: #4154f1;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      transition: background-color .2s ease;
+    }
+    .project-card .place-bid-btn:hover {
+      background-color: #37517E;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #6b7280;
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .pagination a {
+      padding: 8px 14px;
+      text-decoration: none;
+      color: #4154f1;
+      border: 1px solid #dde1ff;
+      border-radius: 6px;
+      background: #fff;
+    }
+    .pagination a.active {
+      background-color: #4154f1;
+      color: white;
+      border-color: #4154f1;
+    }
+    .pagination a:hover:not(.active) {
+      background-color: #eef1ff;
+    }
+  </style>
 </head>
 
 <body class="index-page">
@@ -97,88 +155,81 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="#" class="logo d-flex align-items-center me-auto">
+      <a href="/" class="logo d-flex align-items-center me-auto">
         <img src="/assets/img/GigmaProLogo.png" alt="GigmaPro" id="gigmaLogo">
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="/" class="active">Home</a></li>
-          <li><a href="#">Hire freelancers</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects" class="active">Find work</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+
+      <a class="btn-getstarted" href="/client/create-project">Post a Project</a>
     </div>
-  </header><br><br>
+  </header>
 
   <main class="main">
 
-    <!-- Add project Section -->
-    <section id="contact" class="contact section">
-
+    <section class="projects-hero">
       <div class="container">
-        <!-- Example Project Card -->
-        <% allProject.forEach((project) => { %>
-          <div class="card">
-            <h3>Project Name: <%= project.title %></h3>
-            <p class="budget">Budget: <%= project.budget %></p>
-            <p class="category">Category: <%= project.category %></p>
-            <p class="skills">Skills Required: JavaScript, Node.js, MySQL, HTML, CSS</p>
-            <p class="description">Description: <%= project.description %></p>
-            <div class="card-footer">
-              <form action="/freelancer/bid-submission/<%= project.id %>" method="get">
-                <button type="submit">Place a Bid</button>
-              </form>  
-            </div>
+        <h1>Find Work</h1>
+        <p>Browse open projects and place a bid.</p>
+      </div>
+    </section>
+
+    <section class="projects-grid">
+      <div class="container">
+
+        <% if (allProject.length === 0) { %>
+          <div class="empty-state">
+            <i class="bi bi-inbox" style="font-size: 2.5rem;"></i>
+            <p class="mt-3 mb-0">There are no open projects right now. Check back soon.</p>
           </div>
-        <% }) %>
-        
-        <div class="pagination">
-          <!-- Previous Page Link -->
-          <% if (currentPage > 1) { %>
-            <a href="?page=<%= currentPage - 1 %>" class="prev">Previous</a>
-          <% } %>
-        
-          <!-- Page Numbers -->
-          <% for (let i = 1; i <= totalPages; i++) { %>
-            <a href="?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
-          <% } %>
-        
-          <!-- Next Page Link -->
-          <% if (currentPage < totalPages) { %>
-            <a href="?page=<%= currentPage + 1 %>" class="next">Next</a>
-          <% } %>
-        </div>
-        
-        <style>
-          .pagination a {
-            margin: 0 5px;
-            padding: 8px 12px;
-            text-decoration: none;
-            color: #007bff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-          }
-          
-          .pagination a.active {
-            background-color: #007bff;
-            color: white;
-          }
-        
-          .pagination a.prev, .pagination a.next {
-            font-weight: bold;
-          }
-        </style>
-        
-        
+        <% } else { %>
+          <div class="row gy-4">
+            <% allProject.forEach((project) => { %>
+              <div class="col-lg-4 col-md-6">
+                <div class="project-card">
+                  <% if (project.category) { %><span class="badge-category"><%= project.category %></span><% } %>
+                  <h3><%= project.title %></h3>
+                  <p class="description"><%= project.description %></p>
+                  <% if (project.skills && project.skills.length > 0) { %>
+                    <div class="skill-tags">
+                      <% project.skills.forEach((s) => { %>
+                        <span class="skill-tag"><%= s.name %></span>
+                      <% }) %>
+                    </div>
+                  <% } %>
+                  <p class="budget">Budget: ₹<%= Number(project.budget || 0).toLocaleString() %></p>
+                  <form action="/freelancer/bid-submission/<%= project.id %>" method="get">
+                    <button type="submit" class="place-bid-btn">Place a Bid</button>
+                  </form>
+                </div>
+              </div>
+            <% }) %>
+          </div>
 
-        <!-- Add more cards here if needed -->
-    </div>
+          <div class="pagination">
+            <% if (currentPage > 1) { %>
+              <a href="?page=<%= currentPage - 1 %>" class="prev">Previous</a>
+            <% } %>
 
-    </section><!-- /Add project section end -->
+            <% for (let i = 1; i <= totalPages; i++) { %>
+              <a href="?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+            <% } %>
+
+            <% if (currentPage < totalPages) { %>
+              <a href="?page=<%= currentPage + 1 %>" class="next">Next</a>
+            <% } %>
+          </div>
+        <% } %>
+
+      </div>
+    </section>
 
   </main>
 
@@ -191,8 +242,6 @@
             <span class="sitename">GigmaPro</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
             <p class="mt-3"><strong>Phone:</strong> <span>+91 86683 93193</span></p>
             <p><strong>Email:</strong> <span>hsworkmail.1@gmail.com</span></p>
           </div>
@@ -201,30 +250,25 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/#about">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/#contact">Contact</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
+          <h4>Get Started</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/projects">Find work</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/client/create-project">Post a project</a></li>
           </ul>
         </div>
 
         <div class="col-lg-4 col-md-12">
-          <h4>Follow Us</h4>
+          <h4>Connect</h4>
           <div class="social-links d-flex">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/HriteshSaha/GigmaPro" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
+            <a href="mailto:hsworkmail.1@gmail.com"><i class="bi bi-envelope"></i></a>
           </div>
         </div>
 
@@ -248,13 +292,7 @@
 
   <!-- Vendor JS Files -->
   <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/vendor/php-email-form/validate.js"></script>
   <script src="/assets/vendor/aos/aos.js"></script>
-  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="/assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
   <!-- Main JS File -->
   <script src="/assets/js/main.js"></script>

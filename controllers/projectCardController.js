@@ -1,21 +1,24 @@
-const { project } = require('../models')
+const { project, skill } = require('../models')
 
 const projectCards = async (req, res)=> {
   try{
     const page = parseInt(req.query.page) || 1
 
-    const limit = 10
+    const limit = 9
 
     const offset = (page - 1) * limit
 
     const { rows: allProjects, count } = await project.findAndCountAll({
+      where: { status: 'open' },
+      order: [['createdAt', 'DESC']],
       limit: limit,
-      offset: offset
+      offset: offset,
+      include: [{ model: skill, as: 'skills', attributes: ['name'] }]
     })
 
     const totalPages = Math.ceil(count / limit)
 
-    res. render('projectCardView', {
+    res.render('projectCardView', {
       allProject: allProjects,
       currentPage: page,
       totalPages: totalPages
