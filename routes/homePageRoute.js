@@ -1,4 +1,7 @@
 const router = require('express').Router()
-const homePage = require('../controllers/homePageController.js')
+const { homePage, handleContact } = require('../controllers/homePageController.js')
 
-module.exports = router.get('/', homePage)
+router.get('/', homePage)
+router.post('/contact', handleContact)
+
+module.exports = router
