@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/HriteshSaha/GigmaPro/actions/workflows/ci.yml/badge.svg)](https://github.com/HriteshSaha/GigmaPro/actions/workflows/ci.yml)
 
-GigmaPro is a full-stack freelance marketplace — think a small-scale Upwork clone — where **clients** post projects and **freelancers** bid on them. Built with Express, EJS, and MySQL (Sequelize ORM), using server-rendered views and session-based auth.
+GigmaPro is a full-stack freelance marketplace — think a small-scale Upwork clone — where **clients** post projects and **freelancers** bid on them. Built with Express, EJS, and PostgreSQL (Sequelize ORM), using server-rendered views and session-based auth.
 
 ## Features
 
@@ -21,7 +21,7 @@ GigmaPro is a full-stack freelance marketplace — think a small-scale Upwork cl
 |------------|----------------------------------|
 | Server     | Node.js, Express                |
 | Views      | EJS (server-rendered)           |
-| Database   | MySQL                           |
+| Database   | PostgreSQL                      |
 | ORM        | Sequelize (+ `sequelize-cli` for migrations/seeders) |
 | Auth       | `express-session`, `bcryptjs`   |
 
@@ -45,7 +45,7 @@ public/                   # Static assets (CSS/JS/images, two UI kits: marketing
 ### Prerequisites
 
 - Node.js 18+
-- A local (or remote) MySQL server
+- A local (or remote) PostgreSQL server
 
 ### 1. Install dependencies
 
@@ -55,7 +55,7 @@ npm install
 
 ### 2. Configure environment variables
 
-Copy `.env.example` to `.env` and fill in your local MySQL credentials:
+Copy `.env.example` to `.env` and fill in your local PostgreSQL credentials:
 
 ```bash
 cp .env.example .env
@@ -70,7 +70,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ### 3. Create the database, run migrations, and seed demo data
 
 ```bash
-mysql -u root -p -e "CREATE DATABASE gigmapro;"
+createdb gigmapro
 npm run db:setup
 ```
 
@@ -97,15 +97,15 @@ The app runs on `http://localhost:8000` by default (configurable via `PORT` in `
 
 ## Running tests
 
-Tests run against a separate `gigmapro_test` database (never your dev data), using Jest + Supertest for HTTP-level integration tests against the real Express app and MySQL.
+Tests run against a separate `gigmapro_test` database (never your dev data), using Jest + Supertest for HTTP-level integration tests against the real Express app and PostgreSQL.
 
 ```bash
-mysql -u root -p -e "CREATE DATABASE gigmapro_test;"
+createdb gigmapro_test
 npm run migrate:test   # applies migrations to gigmapro_test
 npm test
 ```
 
-Set `DB_NAME_TEST` in `.env` if you want a different test database name (see `.env.example`). CI runs this same suite against a fresh MySQL service container on every push (see `.github/workflows/ci.yml`).
+Set `DB_NAME_TEST` in `.env` if you want a different test database name (see `.env.example`). CI runs this same suite against a fresh PostgreSQL service container on every push (see `.github/workflows/ci.yml`).
 
 ## Available npm scripts
 
@@ -119,15 +119,21 @@ Set `DB_NAME_TEST` in `.env` if you want a different test database name (see `.e
 | `npm run db:setup`    | Migrate + seed in one step                    |
 | `npm test`            | Run the Jest/Supertest test suite             |
 
-## Deploying for free
+## Deploying for free (Render)
 
-This is a monolith (Express serves both the API and the server-rendered frontend), which makes it a good fit for a single free web-service host rather than splitting frontend/backend:
+This is a monolith (Express serves both the API and the server-rendered frontend), which makes it a good fit for a single free web-service host rather than splitting frontend/backend. The repo includes a [`render.yaml`](render.yaml) blueprint that provisions both pieces in one go:
 
-- **[Render](https://render.com)** — free Node.js web service + a free tier for managed MySQL alternatives (or point it at PlanetScale/Railway for the DB). Set the build command to `npm install` and the start command to `npm start`, then add the environment variables from `.env.example` (`DATABASE_URL`, `SESSION_SECRET`, `NODE_ENV=production`) in the dashboard.
-- **[Railway](https://railway.app)** — can host both the Node app and a MySQL instance in the same project; it injects `DATABASE_URL` automatically, which `config/config.js` already reads in production.
-- After deploying, run migrations/seeders once against the production database (most hosts let you run a one-off shell command, or you can run `npm run db:setup` locally against the production `DATABASE_URL`).
+1. Push this repo to GitHub (if you haven't already).
+2. On [Render](https://render.com), choose **New > Blueprint** and point it at the repo. Render reads `render.yaml` and provisions:
+   - A free **Node.js web service** (`npm install && npm run migrate` as the build step, `npm start` to run it) — the build step applies any pending Sequelize migrations before each deploy, so the schema stays current without shell access.
+   - A free **PostgreSQL database**, wired to the web service via a `DATABASE_URL` environment variable Render injects automatically.
+   - A generated `SESSION_SECRET`.
+3. Once deployed, seed demo data once by running `npm run seed` locally against the production `DATABASE_URL` (copy it from the Render Postgres dashboard into a local `.env`, or export it inline).
 
-Either way: never commit real database credentials — this project reads all of them from environment variables (see `config/config.js` and `.env.example`).
+Notes:
+- Render's free Postgres instance expires after 90 days unless upgraded to a paid plan — fine for a demo/portfolio project, but re-check before relying on it long-term.
+- The free web service spins down after 15 minutes of inactivity, so the first request after idling will be slow.
+- Never commit real database credentials — this project reads all of them from environment variables (see `config/config.js` and `.env.example`).
 
 ## License
 

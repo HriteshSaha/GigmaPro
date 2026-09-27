@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: gigmapro
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run migrate
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DB_SSL
+        value: "false"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gigmapro-db
+          property: connectionString
+
+databases:
+  - name: gigmapro-db
+    plan: free
+    databaseName: gigmapro
+    user: gigmapro
